@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="euc-kr"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation// DTD Tiles Configuration 2.1 //EN"
+"http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+	<definition name="main" template="/WEB-INF/jsp/module/tem.jsp">
+		<put-attribute name="body" value="/WEB-INF/jsp/module/main.jsp"/>
+		<put-attribute name="bottom" value="/WEB-INF/jsp/module/bottom.jsp"/>
+		<put-attribute name="left" value="/WEB-INF/jsp/module/left.jsp"/>
+		<put-attribute name="left2" value="/WEB-INF/jsp/module/left2.jsp"/>
+		<put-attribute name="chat" value="/WEB-INF/jsp/chat/chat.jsp"/>
+		<put-attribute name="top" value="/WEB-INF/jsp/module/top.jsp"/>
+	</definition>
+	<definition name="board/*" extends="main">
+		<put-attribute name="body" value="/WEB-INF/jsp/board/{1}.jsp"/>
+	</definition>
+	<definition name="dealboard/*" extends="main">
+		<put-attribute name="body" value="/WEB-INF/jsp/dealboard/{1}.jsp"/>
+	</definition>
+	<definition name="member/*" extends="main">
+		<put-attribute name="body" value="/WEB-INF/jsp/member/{1}.jsp"/>
+	</definition>
+	<definition name="mileage/*" extends="main">
+		<put-attribute name="body" value="/WEB-INF/jsp/mileage/{1}.jsp"/>
+	</definition>
+	<definition name="module/*" extends="main">
+		<put-attribute name="body" value="/WEB-INF/jsp/module/{1}.jsp"/>
+	</definition>
+	<definition name="mypage/*" extends="main">
+		<put-attribute name="left" value="/WEB-INF/jsp/mypage/mypage.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/jsp/mypage/{1}.jsp"/>
+	</definition>
+	<definition name="admin/*" extends="main">
+		<put-attribute name="left" value="/WEB-INF/jsp/admin/adminpage.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/jsp/admin/{1}.jsp"/>
+	</definition>
+	<definition name="zzim/*" extends="main">
+		<put-attribute name="body" value="/WEB-INF/jsp/zzim/{1}.jsp"/>
+	</definition>
+	
+	<definition name="message/*" template="/WEB-INF/jsp/message/{1}.jsp"/>	
+	<definition name="*" template="/WEB-INF/jsp/module/{1}.jsp"/>
+	
+</tiles-definitions>

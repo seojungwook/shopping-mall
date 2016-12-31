@@ -1,0 +1,28 @@
+## messages.txt => messages.properties 변경
+error.input.user=입력정보에 문제가 있습니다.
+error.required.userId=유저ID를 입력해 주세요
+error.required.password=패스워드를 입력해 주세요
+error.login.user=로그인이 필요합니다.
+error.login.id=아이디 또는 비밀번호 오류입니다.
+
+error.required.id=아이디를 입력해 주세요.
+error.required.pass=비밀번호를 입력해 주세요.
+error.required.name=이름을 입력해 주세요.
+error.required.nickname=닉네임을 입력해 주세요.
+error.required.postcode=우편번호를 입력해 주세요.
+error.required.address2=주소를 입력해 주세요.
+error.required.tel3=전화번호를 입력해 주세요.
+error.required.pon3=전화번호를 입력해 주세요.
+error.required.email=E-MAIL을 입력해 주세요.
+user.userId.default=로그인 시 필요합니다.
+user.userName.default=배송 시 필요합니다.
+typeMismatch.birthDay=생년월일은 YYYY-MM-DD 형식으로 입력해 주세요.
+error.duplicate.user=중복된 아이디입니다.
+
+
+---------------messages2---------
+itemMenu.title=상품 목록 화면
+itemEdit.title=상품 편집 화면
+itemAdd.title=상품 등록 화면
+itemDelete.title=상품 제거 화면
+itemDetail.title=상품 상세 화면

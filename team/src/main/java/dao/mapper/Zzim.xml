@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.mapper.ZzimMapper">
+<select id="getzzimlist" resultType="Zzim" parameterType="map">
+select z.mno, z.bno, d.picture1, d.iname, d.iprice, m.nickname, d.dealcheck ,d.category
+from 
+zzim z, deal_board d, member3 m 
+where z.mno = #{mno} and m.mno = z.mno and z.bno = d.bno
+</select>
+</mapper>

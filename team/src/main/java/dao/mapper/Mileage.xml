@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- dap.mapper패키지 생성 dao.mapper Item.xml 파일 생성 -->
+      <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.mapper.MileageMapper">
+	<select id="getMileage" resultType="Mileage" parameterType="map">
+		select m.listno, m.money, m.mileage, m.mno, mem.mno, mem.nickname, m.regdate, m.mileage_check from mileage m, member3 mem where m.mno = mem.mno order by m.listno desc
+	</select>
+	<!-- <select id="search" resultType="Board" parameterType="map">
+		select * from (select rownum rnum, num, name, pass, subject, content,
+		ref, reflevel, refstep, readcnt, regdate, file1 fileUrl
+		from (select * from board order by ref desc, refstep) )
+		<if test="#{searchContent} != null">
+			where ${searchType} like '%${searchContent}%'
+		</if>
+
+	</select>
+	
+	select * from (select listno, mNo, money, mileage, add_mileage, using_mileage, mileage_check, regdate
+		from (select * from mileage order by mNo) )
+-->
+
+
+</mapper>

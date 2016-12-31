@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.mapper.DealBoardMapper">
+	<select id="getDealBoard" resultType="DealBoard" parameterType="map">
+	select * from 
+	(select rownum rnum, d.bNo, d.category, d.dealcheck, d.iName, d.iprice, d.transport, d.smemno, d.bmemno, d.subject, d.content, d.readcnt, d.regdate,d.picture1 fileurl1, d.picture2 fileurl2, d.picture3 fileurl3, d.picture4 fileurl4, d.picture5 fileurl5, m.NICKNAME nickname
+      from (select bNo, category, iName, iprice, transport, dealcheck, smemno, bmemno, subject, content, readcnt, regdate, picture1, picture2 , picture3, picture4, picture5 from deal_board order by bNo desc) d, member3 m 
+<!--  	where d.smemno = m.mno
+	and category=#{category} and dealcheck=#{dealcheck} order by d.bno desc)
+      	where rnum >= #{start} and rnum &lt;=#{end} 
+ -->
+        <where>
+      	<if test="dealcheck == 0"> 
+      	d.smemno = m.mno and category=#{category} and dealcheck=#{dealcheck} order by d.bno desc)
+      	where rnum >= #{start} and rnum &lt;=#{end}
+      	</if>
+      	<if test="dealcheck == 2">
+      	d.bmemno = m.mno and category=#{category} and dealcheck=#{dealcheck} order by d.bno desc)
+      	where rnum >= #{start} and rnum &lt;=#{end}
+      	</if>
+      </where>
+
+	</select>
+	
+	<select id="getDealBoardDetail" resultType="DealBoard" parameterType="map">
+		select d.bNo, d.category, d.dealcheck, d.iName, d.iprice, d.transport, d.smemno, d.bmemno, d.subject, d.content, d.readcnt, d.regdate,
+		d.picture1 fileurl1, d.picture2 fileurl2, d.picture3 fileurl3, d.picture4 fileurl4, d.picture5 fileurl5, m.nickname nickname
+		from deal_board d, member3 m 
+		<where>
+			<if test="dealcheck == 0"> 
+			d.smemno = m.mno and d.bNo = #{num}
+			</if>
+			<if test="dealcheck == 2"> 
+			d.bmemno = m.mno and d.bNo = #{num}
+			</if>
+		</where>
+	</select>
+	<select id="getSaleDealBoard" resultType="DealBoard">
+	select * from 
+	(select rownum rnum, d.bNo, d.category, d.dealcheck, d.iName, d.iprice, d.transport, d.smemno, d.bmemno, SUBSTR(d.subject,1,6) subject, d.content, d.readcnt, d.regdate,d.picture1 fileurl1, d.picture2 fileurl2, d.picture3 fileurl3, d.picture4 fileurl4, d.picture5 fileurl5, m.NICKNAME nickname
+      from (select bNo, category, iName, iprice, transport, dealcheck, smemno, bmemno, subject, content, readcnt, regdate, picture1, picture2 , picture3, picture4, picture5 from deal_board order by bNo desc) d, member3 m 
+      where d.smemno = m.mno
+   	  and dealcheck=0 order by d.bno desc)
+	</select><select id="getBuyDealBoard" resultType="DealBoard">
+		select * from 
+	(select rownum rnum, d.bNo, d.category, d.dealcheck, d.iName, d.iprice, d.transport, d.smemno, d.bmemno, SUBSTR(d.subject,1,6) subject, d.content, d.readcnt, d.regdate,d.picture1 fileurl1, d.picture2 fileurl2, d.picture3 fileurl3, d.picture4 fileurl4, d.picture5 fileurl5, m.NICKNAME nickname
+      from (select bNo, category, iName, iprice, transport, dealcheck, smemno, bmemno, subject, content, readcnt, regdate, picture1, picture2 , picture3, picture4, picture5 from deal_board order by bNo desc) d, member3 m 
+      where d.bmemno = m.mno
+   	  and dealcheck=2 order by d.bno desc)
+	</select>
+	<select id="searchList" resultType="DealBoard" parameterType="map">
+		select * from 
+	 (select rownum rnum, d.bNo, d.category, d.dealcheck, d.iName, d.iprice, d.transport, d.smemno, d.bmemno, d.subject, d.content, d.readcnt, d.regdate,d.picture1 fileurl1, d.picture2 fileurl2, d.picture3 fileurl3, d.picture4 fileurl4, d.picture5 fileurl5, m.NICKNAME nickname
+      from (select bNo, category, iName, iprice, transport, dealcheck, smemno, bmemno, subject, content, readcnt, regdate, picture1, picture2 , picture3, picture4, picture5 from deal_board order by bNo desc) d, member3 m 
+      where d.smemno = m.mno
+   	  and category=#{category} and dealcheck=#{dealcheck} order by d.bno desc)
+      where ${searchType} like ${searchContent} and rnum >= #{start} and rnum &lt;=#{end}
+	</select>
+	<select id="allsearchList" resultType="DealBoard" parameterType="map">
+		select * from 
+	 (select rownum rnum, d.bNo, d.category, d.dealcheck, d.iName, d.iprice, d.transport, d.smemno, d.bmemno, d.subject, d.content, d.readcnt, d.regdate,d.picture1 fileurl1, d.picture2 fileurl2, d.picture3 fileurl3, d.picture4 fileurl4, d.picture5 fileurl5, m.NICKNAME nickname
+      from (select bNo, category, iName, iprice, transport, dealcheck, smemno, bmemno, subject, content, readcnt, regdate, picture1, picture2 , picture3, picture4, picture5 from deal_board order by bNo desc) d, member3 m 
+      where d.smemno = m.mno and subject like ${searchContent} order by d.bno desc)
+      where rnum >= ${start} and rnum &lt;=${end}
+	</select>
+	<update id="dealcheckUpdate" parameterType="map">
+	<if test="dealcheck == 0"> 
+		update deal_board set dealcheck = 1 , smemno = #{mNo} where bNo=#{num} 
+	</if>
+	<if test="dealcheck == 2"> 
+		update deal_board set dealcheck = 1 , bmemno = #{mNo} where bNo=#{num}
+	</if>
+	</update>
+	<select id="getDealBoardCount" resultType="Integer" parameterType="map">
+			select COUNT(*) from 
+	 (select * from (select * from deal_board order by bNo desc) d, member3 m where d.smemno = m.mno order by d.bno desc)
+      where subject like ${searchContent}
+	</select>
+</mapper>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.mapper.BoardMapper">
+	<select id="getBoard" resultType="Board" parameterType="map">
+ 		select * from 
+		(select rownum rnum,b.no,b.category,m.nickName,b.subject,b.content,b.mNo,b.readcnt,b.regdate,b.picture fileUrl
+		from
+		(select * from board2 where category=#{category} order by no desc) b, member3 m where m.mno = b.mno)
+ 		where rnum >= #{start} and rnum &lt;=#{end}	
+  	</select>
+  	
+  	<select id="getAdminBoard" resultType="Board" parameterType="map">
+ 		select * from 
+		(select rownum rnum,b.no,b.category,m.nickName,b.subject,b.content,b.mNo,b.readcnt,b.regdate,b.picture fileUrl
+		from
+		(select * from board2 where category=#{category} order by no desc) b, member3 m where m.mno = b.mno)
+ 		where rnum >= #{start} and rnum &lt;=#{end}	
+  	</select>
+  	
+	<select id="seojw" resultType="Board" parameterType="map">
+	select * from 
+	(select rownum rnum,b.no,b.category,m.nickName,b.subject,b.content,b.mNo,b.readcnt,b.regdate,b.picture fileUrl
+		from
+		(select * from board2 k where category =#{category} and ${searchtype} like '%${searchContent}%' order by k.no desc) b,member3 m where m.mno = b.mno)
+		where rnum >= #{start} and rnum &lt;=#{end}
+	</select>
+	  <select id="getBoard1" resultType="Board" parameterType="map">
+ 		select * from 
+		(select rownum rnum,b.no,b.category,m.nickName,b.subject,b.content,b.mNo,b.readcnt,b.regdate,b.picture fileUrl
+		from
+		(select * from board2 where category=#{category} order by no desc) b, member3 m where m.mno = b.mno and b.mno=#{mno})
+ 		where rnum >= #{start} and rnum &lt;=#{end}	
+  	</select>
+  	
+</mapper>

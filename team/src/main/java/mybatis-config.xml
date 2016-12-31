@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias type="logic.Member" alias="Member" />
+		<typeAlias type="logic.DealBoard" alias="DealBoard" />
+		<typeAlias type="logic.Mileage" alias="Mileage" />
+		<typeAlias type="logic.Board" alias="Board" />
+		<typeAlias type="logic.Zzim" alias="Zzim" />
+	</typeAliases>
+	<mappers>
+		<mapper resource="dao/mapper/Member.xml" />
+		<mapper resource="dao/mapper/DealBoard.xml" />
+		<mapper resource="dao/mapper/Mileage.xml" />
+		<mapper resource="dao/mapper/Board.xml" />
+		<mapper resource="dao/mapper/Zzim.xml" />
+	</mappers>
+</configuration>
